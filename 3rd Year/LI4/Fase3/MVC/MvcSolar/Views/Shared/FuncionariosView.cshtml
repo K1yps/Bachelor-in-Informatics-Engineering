@@ -1,0 +1,43 @@
+@using MvcSolar.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<head>
+    <title>loadmapasyncHTML</title>
+    <style type='text/css'>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Segoe UI',Helvetica,Arial,Sans-Serif
+        }
+    </style>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=Ag-xqOL2EnR0ivr5Y1dhiLLZSn11Xr9AsHGPnPBa0eAqHHsFfiq6ye7ZsoAS4yaC'></script>
+    <script type='text/javascript'>
+        var map;
+        function loadMapScenario() {
+            map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
+            var location, pin;
+            @foreach (var location in ViewBag.locations)
+                {
+                @:location = new Microsoft.Maps.Location(@location.latitude, @location.longitude);
+                @:pin = new Microsoft.Maps.Pushpin(location, { color: 'green' });
+                @:map.entities.push(pin);
+            }
+
+
+        }
+
+
+    </script>
+</head>
+<body onload='loadMapScenario();'>
+    <div id='printoutPanel'></div>
+
+    <div id='myMap' style="position:relative;width:100%;height:700px;"></div>
+</body>

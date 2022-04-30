@@ -1,0 +1,65 @@
+﻿@model IEnumerable<MvcSolar.Models.Habitacao>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Habitações</h1>
+
+<p>
+    <a asp-action="Create">Criar Nova</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Morada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Latitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Longitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bateria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Capacidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Localidade)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Morada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bateria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Localidade.LocalidadeID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.HabitacaoID">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.HabitacaoID">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.HabitacaoID">Apagar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

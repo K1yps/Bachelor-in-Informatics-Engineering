@@ -1,0 +1,16 @@
+$TTL 86400
+
+@	 IN	SOA cc.pt. PL05G03.cc.pt. (
+			1521262	;Serial
+			28800	;Refresh -24 hours
+			7200	;Retry - 2hours
+			604800	;Expire -7days
+			86400)	;Minimum TTL - 1days
+
+	IN	NS	Server1.cc.pt.
+	IN	NS	Mercurio.cc.pt.
+
+1	IN PTR Server1.cc.pt.
+2	IN PTR Server2.cc.pt.
+3	IN PTR Server3.cc.pt.
+

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<MvcSolar.Models.Lembrete>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lembretes</h1>
+
+<p>
+    <a asp-action="Create">Criar Novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.dataHora)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Evento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Utilizador)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataHora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Evento.EventoId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Utilizador.UtilizadorId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.LembreteID">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.LembreteID">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.LembreteID">Apagar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

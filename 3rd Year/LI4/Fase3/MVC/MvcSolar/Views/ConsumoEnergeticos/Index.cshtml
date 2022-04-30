@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MvcSolar.Models.ConsumoEnergetico>
+<title>
+    @ViewData["Title"] - Grafico
+</title>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<div id="chart_div" style="width: 900px; height: 500px;"></div>
+
+<script type="text/javascript">
+
+
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(CarregaDados);
+
+    function CarregaDados() {
+        $.ajax({
+            url: '@Url.Action("ConsumoEnergeticoGrafico", "ConsumoEnergeticos")',
+            dataType: "json",
+            type: "GET",
+            error: function(xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function(data) {
+                GraficoPopulacional(data);
+                return false;
+            }
+        });
+        return false;
+    }
+
+    function GraficoPopulacional(data) {
+        var dataArray = [
+            ['Data', 'Consumo']
+        ];
+        $.each(data, function(i, item) {
+            dataArray.push([item.data, item.consumo]);
+        });
+        var data = google.visualization.arrayToDataTable(dataArray);
+        var options = {
+            title: 'Consumo Energético',
+            chartArea: {
+                width: '50%'
+            },
+            colors: ['#b0120a', '#ffab91'],
+            hAxis: {
+                title: 'Dia',
+                minValue: 0
+            },
+            vAxis: {
+                title: 'Valor em watts'
+            }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+        return false;
+    }
+</script> 

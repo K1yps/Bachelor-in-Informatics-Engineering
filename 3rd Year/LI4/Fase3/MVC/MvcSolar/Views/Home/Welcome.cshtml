@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Welcome";
+
+    var src = DateTime.Now;
+    var data = src.Hour;
+
+    string greeting = "Bem-vindo";
+
+    if (data > 20)
+    {
+        greeting = "Boa Noite";
+    }
+    else if (data > 12)
+    {
+        greeting = "Boa Tarde";
+    }
+    else
+    {
+        greeting = "Bom Dia";
+    }
+}
+<h1>@greeting</h1>
+
+<div style="margin-left: 0; margin-right: 0 ;padding-left:0; padding-right:0;">
+    <video id="videoplayer" height="700" autoplay loop muted margin="0" padding="0">
+        <source src="@Url.Content("~/video/video.mp4")" type="video/mp4" />
+    </video>
+    <div style="position: absolute; top: 40%; left: 48%; z-index: 1;color:#fff; font-size:80px">SOL:AR</div><br>
+    <div style="position: absolute; top: 50%; left: 40%; z-index: 1;color:#fff; font-size:40px">Soluções Energéticas Conscientes</div><br>
+</div>
+
+
+
+<u><a class="nav-link text-dark" asp-area="" asp-controller="DashboardPaineis" asp-action="Index">Aceder à Área de Funcionário</a></u>
