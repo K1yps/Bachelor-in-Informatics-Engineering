@@ -1,1 +1,0 @@
-Diretoria com os executaveis produzidos

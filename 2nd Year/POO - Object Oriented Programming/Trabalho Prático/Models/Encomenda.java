@@ -24,12 +24,12 @@ public class Encomenda implements Serializable {
         this.produtos = new HashSet<>();
     }
 
-    public Encomenda(String loja, String user, String nome, Collection<Produto> fds) {
+    public Encomenda(String loja, String user, String nome, Collection<Produto> col) {
         this.loja = loja;
         this.user = user;
         this.enc = nome;
         this.peso = 999;
-        this.produtos = new HashSet<>(fds);
+        this.produtos = new HashSet<>(col);
     }
 
     public Encomenda(Encomenda e) {
